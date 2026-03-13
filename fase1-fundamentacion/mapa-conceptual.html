@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtualización vs. Contenedores — Mapa Conceptual</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f4ef;
+      color: #1a1a18;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #2c2c2a;
+      letter-spacing: -0.01em;
+    }
+    .card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    svg { display: block; width: 100%; height: auto; }
+
+    /* --- color ramps (light mode) --- */
+    .c-purple rect, .c-purple circle, .c-purple ellipse { fill: #EEEDFE; stroke: #534AB7; }
+    .c-purple .th { fill: #3C3489; }
+    .c-purple .ts { fill: #534AB7; }
+
+    .c-teal rect, .c-teal circle, .c-teal ellipse { fill: #E1F5EE; stroke: #0F6E56; }
+    .c-teal .th { fill: #085041; }
+    .c-teal .ts { fill: #0F6E56; }
+
+    .c-amber rect, .c-amber circle, .c-amber ellipse { fill: #FAEEDA; stroke: #854F0B; }
+    .c-amber .th { fill: #633806; }
+    .c-amber .ts { fill: #854F0B; }
+
+    .c-gray rect, .c-gray circle, .c-gray ellipse { fill: #F1EFE8; stroke: #5F5E5A; }
+    .c-gray .th { fill: #444441; }
+    .c-gray .ts { fill: #5F5E5A; }
+
+    .c-green rect, .c-green circle, .c-green ellipse { fill: #EAF3DE; stroke: #3B6D11; }
+    .c-green .th { fill: #27500A; }
+    .c-green .ts { fill: #3B6D11; }
+
+    .c-red rect, .c-red circle, .c-red ellipse { fill: #FCEBEB; stroke: #A32D2D; }
+    .c-red .th { fill: #791F1F; }
+    .c-red .ts { fill: #A32D2D; }
+
+    /* text classes */
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .th { font-size: 14px; font-weight: 500; }
+    .ts { font-size: 12px; font-weight: 400; }
+
+    /* arrows */
+    .arr { stroke: #888780; stroke-width: 1px; fill: none; }
+
+    /* leader */
+    .leader { stroke: #b4b2a9; stroke-width: 0.5px; stroke-dasharray: 4 3; fill: none; }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1c1c1a; color: #d3d1c7; }
+      h1 { color: #b4b2a9; }
+      .card { background: #242422; border-color: rgba(255,255,255,0.08); }
+
+      .c-purple rect, .c-purple circle, .c-purple ellipse { fill: #3C3489; stroke: #AFA9EC; }
+      .c-purple .th { fill: #CECBF6; }
+      .c-purple .ts { fill: #AFA9EC; }
+
+      .c-teal rect, .c-teal circle, .c-teal ellipse { fill: #085041; stroke: #5DCAA5; }
+      .c-teal .th { fill: #9FE1CB; }
+      .c-teal .ts { fill: #5DCAA5; }
+
+      .c-amber rect, .c-amber circle, .c-amber ellipse { fill: #633806; stroke: #EF9F27; }
+      .c-amber .th { fill: #FAC775; }
+      .c-amber .ts { fill: #EF9F27; }
+
+      .c-gray rect, .c-gray circle, .c-gray ellipse { fill: #2C2C2A; stroke: #888780; }
+      .c-gray .th { fill: #D3D1C7; }
+      .c-gray .ts { fill: #888780; }
+
+      .c-green rect, .c-green circle, .c-green ellipse { fill: #27500A; stroke: #97C459; }
+      .c-green .th { fill: #C0DD97; }
+      .c-green .ts { fill: #97C459; }
+
+      .c-red rect, .c-red circle, .c-red ellipse { fill: #791F1F; stroke: #F09595; }
+      .c-red .th { fill: #F7C1C1; }
+      .c-red .ts { fill: #F09595; }
+
+      .arr { stroke: #5F5E5A; }
+      .leader { stroke: #444441; }
+    }
+  </style>
+</head>
+<body>
+<h1>Virtualización vs. Contenedores — Mapa Conceptual</h1>
+<div class="card">
+<svg viewBox="0 0 680 1820" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- TÍTULO PRINCIPAL -->
+<g class="c-gray">
+  <rect x="140" y="14" width="400" height="48" rx="12" stroke-width="0.5"/>
+  <text class="th" x="340" y="38" text-anchor="middle" dominant-baseline="central" font-size="15">Virtualización vs. Contenedores</text>
+  <text class="ts" x="340" y="54" text-anchor="middle" dominant-baseline="central">Computación en la nube — mapa conceptual</text>
+</g>
+
+<!-- SECCIÓN 1: VIRTUALIZACIÓN -->
+<g class="c-purple">
+  <rect x="40" y="90" width="280" height="44" rx="10" stroke-width="0.5"/>
+  <text class="th" x="180" y="112" text-anchor="middle" dominant-baseline="central">Virtualización</text>
+</g>
+<g class="c-purple">
+  <rect x="30" y="158" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="180" y="175" text-anchor="middle" dominant-baseline="central">Definición</text>
+  <text class="ts" x="180" y="195" text-anchor="middle" dominant-baseline="central">Abstrae hardware físico en recursos lógicos</text>
+</g>
+<line x1="180" y1="134" x2="180" y2="158" class="arr" marker-end="url(#arrow)"/>
+<g class="c-purple">
+  <rect x="30" y="238" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="180" y="255" text-anchor="middle" dominant-baseline="central">Hypervisor (VMM)</text>
+  <text class="ts" x="180" y="275" text-anchor="middle" dominant-baseline="central">Capa que administra las VMs sobre el HW</text>
+</g>
+<line x1="180" y1="214" x2="180" y2="238" class="arr" marker-end="url(#arrow)"/>
+<g class="c-purple">
+  <rect x="20" y="318" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="90" y="335" text-anchor="middle" dominant-baseline="central">Tipo 1 (Bare-metal)</text>
+  <text class="ts" x="90" y="355" text-anchor="middle" dominant-baseline="central">Corre directo en HW</text>
+</g>
+<g class="c-purple">
+  <rect x="200" y="318" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="270" y="335" text-anchor="middle" dominant-baseline="central">Tipo 2 (Hosted)</text>
+  <text class="ts" x="270" y="355" text-anchor="middle" dominant-baseline="central">Sobre SO anfitrión</text>
+</g>
+<line x1="130" y1="294" x2="90" y2="318" class="arr" marker-end="url(#arrow)"/>
+<line x1="230" y1="294" x2="270" y2="318" class="arr" marker-end="url(#arrow)"/>
+<g class="c-gray">
+  <rect x="20" y="394" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="90" y="411" text-anchor="middle" dominant-baseline="central">Ejemplos Tipo 1</text>
+  <text class="ts" x="90" y="427" text-anchor="middle" dominant-baseline="central">VMware ESXi, Hyper-V, KVM</text>
+</g>
+<g class="c-gray">
+  <rect x="200" y="394" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="270" y="411" text-anchor="middle" dominant-baseline="central">Ejemplos Tipo 2</text>
+  <text class="ts" x="270" y="427" text-anchor="middle" dominant-baseline="central">VirtualBox, VMware Workstation</text>
+</g>
+<line x1="90" y1="374" x2="90" y2="394" class="arr" marker-end="url(#arrow)"/>
+<line x1="270" y1="374" x2="270" y2="394" class="arr" marker-end="url(#arrow)"/>
+<g class="c-purple">
+  <rect x="30" y="462" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="180" y="479" text-anchor="middle" dominant-baseline="central">Máquina Virtual (VM)</text>
+  <text class="ts" x="180" y="499" text-anchor="middle" dominant-baseline="central">Emula un equipo físico completo</text>
+</g>
+<line x1="180" y1="438" x2="180" y2="462" class="arr" marker-end="url(#arrow)"/>
+<g class="c-purple">
+  <rect x="20" y="542" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="86" y="559" text-anchor="middle" dominant-baseline="central">SO invitado</text>
+  <text class="ts" x="86" y="575" text-anchor="middle" dominant-baseline="central">Propio kernel completo</text>
+</g>
+<g class="c-purple">
+  <rect x="168" y="542" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="234" y="559" text-anchor="middle" dominant-baseline="central">CPU virtual</text>
+  <text class="ts" x="234" y="575" text-anchor="middle" dominant-baseline="central">vCPU asignada</text>
+</g>
+<g class="c-purple">
+  <rect x="20" y="600" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="86" y="617" text-anchor="middle" dominant-baseline="central">RAM virtual</text>
+  <text class="ts" x="86" y="633" text-anchor="middle" dominant-baseline="central">Memoria aislada</text>
+</g>
+<g class="c-purple">
+  <rect x="168" y="600" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="234" y="617" text-anchor="middle" dominant-baseline="central">Almacenamiento</text>
+  <text class="ts" x="234" y="633" text-anchor="middle" dominant-baseline="central">Disco virtual (.vmdk / .vhd)</text>
+</g>
+<line x1="130" y1="518" x2="86"  y2="542" class="arr" marker-end="url(#arrow)"/>
+<line x1="230" y1="518" x2="234" y2="542" class="arr" marker-end="url(#arrow)"/>
+<line x1="86"  y1="518" x2="86"  y2="600" class="arr" marker-end="url(#arrow)"/>
+<line x1="234" y1="518" x2="234" y2="600" class="arr" marker-end="url(#arrow)"/>
+<g class="c-purple">
+  <rect x="30" y="670" width="300" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="180" y="687" text-anchor="middle" dominant-baseline="central">Tipos de virtualización</text>
+  <text class="ts" x="180" y="703" text-anchor="middle" dominant-baseline="central">Según lo que se abstrae</text>
+</g>
+<line x1="180" y1="644" x2="180" y2="670" class="arr" marker-end="url(#arrow)"/>
+<g class="c-gray">
+  <rect x="20" y="730" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="86" y="747" text-anchor="middle" dominant-baseline="central">De servidor</text>
+  <text class="ts" x="86" y="763" text-anchor="middle" dominant-baseline="central">Múltiples VMs en un HW</text>
+</g>
+<g class="c-gray">
+  <rect x="168" y="730" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="234" y="747" text-anchor="middle" dominant-baseline="central">De red (SDN)</text>
+  <text class="ts" x="234" y="763" text-anchor="middle" dominant-baseline="central">VLANs, redes lógicas</text>
+</g>
+<g class="c-gray">
+  <rect x="20" y="788" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="86" y="805" text-anchor="middle" dominant-baseline="central">De almacenamiento</text>
+  <text class="ts" x="86" y="821" text-anchor="middle" dominant-baseline="central">SAN, NAS, pools</text>
+</g>
+<g class="c-gray">
+  <rect x="168" y="788" width="132" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="234" y="805" text-anchor="middle" dominant-baseline="central">De escritorio (VDI)</text>
+  <text class="ts" x="234" y="821" text-anchor="middle" dominant-baseline="central">Escritorios remotos</text>
+</g>
+<line x1="130" y1="714" x2="86"  y2="730" class="arr" marker-end="url(#arrow)"/>
+<line x1="230" y1="714" x2="234" y2="730" class="arr" marker-end="url(#arrow)"/>
+<line x1="86"  y1="714" x2="86"  y2="788" class="arr" marker-end="url(#arrow)"/>
+<line x1="234" y1="714" x2="234" y2="788" class="arr" marker-end="url(#arrow)"/>
+<g class="c-green">
+  <rect x="30" y="856" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="100" y="873" text-anchor="middle" dominant-baseline="central">Ventajas</text>
+  <text class="ts" x="100" y="891" text-anchor="middle" dominant-baseline="central">Aislamiento total</text>
+  <text class="ts" x="100" y="905" text-anchor="middle" dominant-baseline="central">SO heterogéneos</text>
+</g>
+<g class="c-red">
+  <rect x="190" y="856" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="260" y="873" text-anchor="middle" dominant-baseline="central">Desventajas</text>
+  <text class="ts" x="260" y="891" text-anchor="middle" dominant-baseline="central">Pesadas (GBs, minutos)</text>
+  <text class="ts" x="260" y="905" text-anchor="middle" dominant-baseline="central">Alto consumo de RAM/CPU</text>
+</g>
+<line x1="180" y1="832" x2="100" y2="856" class="arr" marker-end="url(#arrow)"/>
+<line x1="180" y1="832" x2="260" y2="856" class="arr" marker-end="url(#arrow)"/>
+
+<!-- SECCIÓN 2: CONTENEDORES -->
+<g class="c-teal">
+  <rect x="360" y="90" width="280" height="44" rx="10" stroke-width="0.5"/>
+  <text class="th" x="500" y="112" text-anchor="middle" dominant-baseline="central">Contenedores</text>
+</g>
+<g class="c-teal">
+  <rect x="350" y="158" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="175" text-anchor="middle" dominant-baseline="central">Definición</text>
+  <text class="ts" x="500" y="195" text-anchor="middle" dominant-baseline="central">Empaquetan app + dependencias en proceso aislado</text>
+</g>
+<line x1="500" y1="134" x2="500" y2="158" class="arr" marker-end="url(#arrow)"/>
+<g class="c-teal">
+  <rect x="350" y="238" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="255" text-anchor="middle" dominant-baseline="central">Kernel del SO anfitrión</text>
+  <text class="ts" x="500" y="275" text-anchor="middle" dominant-baseline="central">Todos los contenedores lo comparten</text>
+</g>
+<line x1="500" y1="214" x2="500" y2="238" class="arr" marker-end="url(#arrow)"/>
+<g class="c-teal">
+  <rect x="348" y="318" width="144" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="420" y="335" text-anchor="middle" dominant-baseline="central">Namespaces Linux</text>
+  <text class="ts" x="420" y="355" text-anchor="middle" dominant-baseline="central">Aíslan PID, red, usuario</text>
+</g>
+<g class="c-teal">
+  <rect x="508" y="318" width="144" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="580" y="335" text-anchor="middle" dominant-baseline="central">cgroups</text>
+  <text class="ts" x="580" y="355" text-anchor="middle" dominant-baseline="central">Limitan CPU, RAM, I/O</text>
+</g>
+<line x1="450" y1="294" x2="420" y2="318" class="arr" marker-end="url(#arrow)"/>
+<line x1="550" y1="294" x2="580" y2="318" class="arr" marker-end="url(#arrow)"/>
+<g class="c-teal">
+  <rect x="350" y="398" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="415" text-anchor="middle" dominant-baseline="central">Container Runtime</text>
+  <text class="ts" x="500" y="435" text-anchor="middle" dominant-baseline="central">Motor que crea y gestiona contenedores</text>
+</g>
+<line x1="500" y1="374" x2="500" y2="398" class="arr" marker-end="url(#arrow)"/>
+<g class="c-gray">
+  <rect x="350" y="474" width="92" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="396" y="491" text-anchor="middle" dominant-baseline="central">Docker</text>
+  <text class="ts" x="396" y="507" text-anchor="middle" dominant-baseline="central">El más popular</text>
+</g>
+<g class="c-gray">
+  <rect x="454" y="474" width="92" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="491" text-anchor="middle" dominant-baseline="central">Podman</text>
+  <text class="ts" x="500" y="507" text-anchor="middle" dominant-baseline="central">Rootless, OCI</text>
+</g>
+<g class="c-gray">
+  <rect x="558" y="474" width="92" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="604" y="491" text-anchor="middle" dominant-baseline="central">containerd</text>
+  <text class="ts" x="604" y="507" text-anchor="middle" dominant-baseline="central">Core de Docker</text>
+</g>
+<line x1="440" y1="454" x2="396" y2="474" class="arr" marker-end="url(#arrow)"/>
+<line x1="500" y1="454" x2="500" y2="474" class="arr" marker-end="url(#arrow)"/>
+<line x1="560" y1="454" x2="604" y2="474" class="arr" marker-end="url(#arrow)"/>
+<g class="c-teal">
+  <rect x="350" y="542" width="300" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="559" text-anchor="middle" dominant-baseline="central">Imagen vs. Contenedor</text>
+  <text class="ts" x="500" y="575" text-anchor="middle" dominant-baseline="central">Diferencia fundamental</text>
+</g>
+<line x1="500" y1="518" x2="500" y2="542" class="arr" marker-end="url(#arrow)"/>
+<g class="c-gray">
+  <rect x="350" y="600" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="420" y="617" text-anchor="middle" dominant-baseline="central">Imagen</text>
+  <text class="ts" x="420" y="633" text-anchor="middle" dominant-baseline="central">Plantilla inmutable (read-only)</text>
+  <text class="ts" x="420" y="648" text-anchor="middle" dominant-baseline="central">Capas de sistema de archivos</text>
+</g>
+<g class="c-teal">
+  <rect x="510" y="600" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="580" y="617" text-anchor="middle" dominant-baseline="central">Contenedor</text>
+  <text class="ts" x="580" y="633" text-anchor="middle" dominant-baseline="central">Instancia en ejecución</text>
+  <text class="ts" x="580" y="648" text-anchor="middle" dominant-baseline="central">Agrega capa escribible</text>
+</g>
+<line x1="450" y1="586" x2="420" y2="600" class="arr" marker-end="url(#arrow)"/>
+<line x1="550" y1="586" x2="580" y2="600" class="arr" marker-end="url(#arrow)"/>
+<g class="c-teal">
+  <rect x="350" y="680" width="300" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="697" text-anchor="middle" dominant-baseline="central">Dockerfile</text>
+  <text class="ts" x="500" y="717" text-anchor="middle" dominant-baseline="central">Script que define cómo construir la imagen</text>
+</g>
+<line x1="420" y1="656" x2="440" y2="680" class="arr" marker-end="url(#arrow)"/>
+<g class="c-teal">
+  <rect x="350" y="760" width="300" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="777" text-anchor="middle" dominant-baseline="central">Orquestación de contenedores</text>
+  <text class="ts" x="500" y="793" text-anchor="middle" dominant-baseline="central">Gestión a escala</text>
+</g>
+<line x1="500" y1="736" x2="500" y2="760" class="arr" marker-end="url(#arrow)"/>
+<g class="c-gray">
+  <rect x="350" y="820" width="92" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="396" y="837" text-anchor="middle" dominant-baseline="central">Kubernetes</text>
+  <text class="ts" x="396" y="853" text-anchor="middle" dominant-baseline="central">Estándar industria</text>
+</g>
+<g class="c-gray">
+  <rect x="454" y="820" width="92" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="837" text-anchor="middle" dominant-baseline="central">Docker Swarm</text>
+  <text class="ts" x="500" y="853" text-anchor="middle" dominant-baseline="central">Nativo Docker</text>
+</g>
+<g class="c-gray">
+  <rect x="558" y="820" width="92" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="604" y="837" text-anchor="middle" dominant-baseline="central">Nomad</text>
+  <text class="ts" x="604" y="853" text-anchor="middle" dominant-baseline="central">HashiCorp</text>
+</g>
+<line x1="440" y1="804" x2="396" y2="820" class="arr" marker-end="url(#arrow)"/>
+<line x1="500" y1="804" x2="500" y2="820" class="arr" marker-end="url(#arrow)"/>
+<line x1="560" y1="804" x2="604" y2="820" class="arr" marker-end="url(#arrow)"/>
+<g class="c-green">
+  <rect x="350" y="884" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="420" y="901" text-anchor="middle" dominant-baseline="central">Ventajas</text>
+  <text class="ts" x="420" y="919" text-anchor="middle" dominant-baseline="central">Ligeros (MBs, segundos)</text>
+  <text class="ts" x="420" y="933" text-anchor="middle" dominant-baseline="central">Alta densidad y portabilidad</text>
+</g>
+<g class="c-red">
+  <rect x="510" y="884" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="580" y="901" text-anchor="middle" dominant-baseline="central">Desventajas</text>
+  <text class="ts" x="580" y="919" text-anchor="middle" dominant-baseline="central">Aislamiento menor que VMs</text>
+  <text class="ts" x="580" y="933" text-anchor="middle" dominant-baseline="central">Solo apps Linux-compatibles</text>
+</g>
+<line x1="500" y1="864" x2="420" y2="884" class="arr" marker-end="url(#arrow)"/>
+<line x1="500" y1="864" x2="580" y2="884" class="arr" marker-end="url(#arrow)"/>
+
+<!-- COMPARATIVA CENTRAL -->
+<g class="c-amber">
+  <rect x="120" y="980" width="440" height="44" rx="10" stroke-width="0.5"/>
+  <text class="th" x="340" y="1002" text-anchor="middle" dominant-baseline="central">Comparativa directa</text>
+</g>
+<g class="c-purple">
+  <rect x="40" y="1048" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="140" y="1065" text-anchor="middle" dominant-baseline="central">Aislamiento</text>
+  <text class="ts" x="140" y="1081" text-anchor="middle" dominant-baseline="central">Total — kernel propio por VM</text>
+</g>
+<g class="c-teal">
+  <rect x="440" y="1048" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="540" y="1065" text-anchor="middle" dominant-baseline="central">Aislamiento</text>
+  <text class="ts" x="540" y="1081" text-anchor="middle" dominant-baseline="central">Parcial — kernel compartido</text>
+</g>
+<g class="c-purple">
+  <rect x="40" y="1106" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="140" y="1123" text-anchor="middle" dominant-baseline="central">Arranque</text>
+  <text class="ts" x="140" y="1139" text-anchor="middle" dominant-baseline="central">Minutos</text>
+</g>
+<g class="c-teal">
+  <rect x="440" y="1106" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="540" y="1123" text-anchor="middle" dominant-baseline="central">Arranque</text>
+  <text class="ts" x="540" y="1139" text-anchor="middle" dominant-baseline="central">Milisegundos a segundos</text>
+</g>
+<g class="c-purple">
+  <rect x="40" y="1164" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="140" y="1181" text-anchor="middle" dominant-baseline="central">Tamaño</text>
+  <text class="ts" x="140" y="1197" text-anchor="middle" dominant-baseline="central">GBs (imagen de disco)</text>
+</g>
+<g class="c-teal">
+  <rect x="440" y="1164" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="540" y="1181" text-anchor="middle" dominant-baseline="central">Tamaño</text>
+  <text class="ts" x="540" y="1197" text-anchor="middle" dominant-baseline="central">MBs (solo diferencias)</text>
+</g>
+<g class="c-purple">
+  <rect x="40" y="1222" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="140" y="1239" text-anchor="middle" dominant-baseline="central">Portabilidad</text>
+  <text class="ts" x="140" y="1255" text-anchor="middle" dominant-baseline="central">Limitada (imagen grande)</text>
+</g>
+<g class="c-teal">
+  <rect x="440" y="1222" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="540" y="1239" text-anchor="middle" dominant-baseline="central">Portabilidad</text>
+  <text class="ts" x="540" y="1255" text-anchor="middle" dominant-baseline="central">Alta — "build once, run anywhere"</text>
+</g>
+<g class="c-purple">
+  <rect x="40" y="1280" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="140" y="1297" text-anchor="middle" dominant-baseline="central">Seguridad</text>
+  <text class="ts" x="140" y="1313" text-anchor="middle" dominant-baseline="central">Mayor (superficie de ataque menor)</text>
+</g>
+<g class="c-teal">
+  <rect x="440" y="1280" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="540" y="1297" text-anchor="middle" dominant-baseline="central">Seguridad</text>
+  <text class="ts" x="540" y="1313" text-anchor="middle" dominant-baseline="central">Menor (escape de contenedor posible)</text>
+</g>
+<g class="c-purple">
+  <rect x="40" y="1338" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="140" y="1355" text-anchor="middle" dominant-baseline="central">Densidad</text>
+  <text class="ts" x="140" y="1371" text-anchor="middle" dominant-baseline="central">Baja — 10s de VMs por host</text>
+</g>
+<g class="c-teal">
+  <rect x="440" y="1338" width="200" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="540" y="1355" text-anchor="middle" dominant-baseline="central">Densidad</text>
+  <text class="ts" x="540" y="1371" text-anchor="middle" dominant-baseline="central">Alta — 100s por host</text>
+</g>
+<!-- Etiquetas centrales -->
+<g class="c-amber">
+  <rect x="270" y="1048" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="1070" text-anchor="middle" dominant-baseline="central">VM</text>
+</g>
+<g class="c-amber">
+  <rect x="270" y="1106" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="1128" text-anchor="middle" dominant-baseline="central">VM</text>
+</g>
+<g class="c-amber">
+  <rect x="270" y="1164" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="1186" text-anchor="middle" dominant-baseline="central">VM</text>
+</g>
+<g class="c-amber">
+  <rect x="270" y="1222" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="1244" text-anchor="middle" dominant-baseline="central">VM</text>
+</g>
+<g class="c-amber">
+  <rect x="270" y="1280" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="1302" text-anchor="middle" dominant-baseline="central">VM</text>
+</g>
+<g class="c-amber">
+  <rect x="270" y="1338" width="140" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="1360" text-anchor="middle" dominant-baseline="central">VM</text>
+</g>
+<line x1="240" y1="1070" x2="270" y2="1070" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="1070" x2="410" y2="1070" class="arr" marker-end="url(#arrow)"/>
+<line x1="240" y1="1128" x2="270" y2="1128" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="1128" x2="410" y2="1128" class="arr" marker-end="url(#arrow)"/>
+<line x1="240" y1="1186" x2="270" y2="1186" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="1186" x2="410" y2="1186" class="arr" marker-end="url(#arrow)"/>
+<line x1="240" y1="1244" x2="270" y2="1244" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="1244" x2="410" y2="1244" class="arr" marker-end="url(#arrow)"/>
+<line x1="240" y1="1302" x2="270" y2="1302" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="1302" x2="410" y2="1302" class="arr" marker-end="url(#arrow)"/>
+<line x1="240" y1="1360" x2="270" y2="1360" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="1360" x2="410" y2="1360" class="arr" marker-end="url(#arrow)"/>
+
+<!-- CASOS DE USO -->
+<g class="c-amber">
+  <rect x="120" y="1406" width="440" height="44" rx="10" stroke-width="0.5"/>
+  <text class="th" x="340" y="1428" text-anchor="middle" dominant-baseline="central">¿Cuándo usar cada uno?</text>
+</g>
+<g class="c-purple">
+  <rect x="30" y="1474" width="300" height="68" rx="8" stroke-width="0.5"/>
+  <text class="th" x="180" y="1491" text-anchor="middle" dominant-baseline="central">Usar VMs cuando...</text>
+  <text class="ts" x="180" y="1509" text-anchor="middle" dominant-baseline="central">Necesitas SOs distintos en un host</text>
+  <text class="ts" x="180" y="1525" text-anchor="middle" dominant-baseline="central">Seguridad máxima y aislamiento fuerte</text>
+  <text class="ts" x="180" y="1541" text-anchor="middle" dominant-baseline="central">Apps legacy que requieren kernel específico</text>
+</g>
+<g class="c-teal">
+  <rect x="350" y="1474" width="300" height="68" rx="8" stroke-width="0.5"/>
+  <text class="th" x="500" y="1491" text-anchor="middle" dominant-baseline="central">Usar contenedores cuando...</text>
+  <text class="ts" x="500" y="1509" text-anchor="middle" dominant-baseline="central">Microservicios y despliegue continuo (CI/CD)</text>
+  <text class="ts" x="500" y="1525" text-anchor="middle" dominant-baseline="central">Escala rápida y alta densidad de instancias</text>
+  <text class="ts" x="500" y="1541" text-anchor="middle" dominant-baseline="central">Portabilidad cloud-native (K8s, AWS ECS)</text>
+</g>
+<line x1="340" y1="1450" x2="180" y2="1474" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="1450" x2="500" y2="1474" class="arr" marker-end="url(#arrow)"/>
+
+<!-- COEXISTENCIA -->
+<g class="c-amber">
+  <rect x="140" y="1566" width="400" height="56" rx="10" stroke-width="0.5"/>
+  <text class="th" x="340" y="1583" text-anchor="middle" dominant-baseline="central">Coexistencia: VMs + Contenedores</text>
+  <text class="ts" x="340" y="1603" text-anchor="middle" dominant-baseline="central">En la nube moderna se usan juntos — contenedores dentro de VMs</text>
+</g>
+<g class="c-gray">
+  <rect x="100" y="1646" width="180" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="190" y="1663" text-anchor="middle" dominant-baseline="central">AWS EC2 + ECS/EKS</text>
+  <text class="ts" x="190" y="1683" text-anchor="middle" dominant-baseline="central">VMs → K8s → Pods</text>
+</g>
+<g class="c-gray">
+  <rect x="300" y="1646" width="180" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="390" y="1663" text-anchor="middle" dominant-baseline="central">Azure VM + AKS</text>
+  <text class="ts" x="390" y="1683" text-anchor="middle" dominant-baseline="central">VMs → Nodos → Contenedores</text>
+</g>
+<g class="c-gray">
+  <rect x="500" y="1646" width="148" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="574" y="1663" text-anchor="middle" dominant-baseline="central">GCP GCE + GKE</text>
+  <text class="ts" x="574" y="1683" text-anchor="middle" dominant-baseline="central">Igual patrón</text>
+</g>
+<line x1="340" y1="1622" x2="190" y2="1646" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="1622" x2="390" y2="1646" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="1622" x2="574" y2="1646" class="arr" marker-end="url(#arrow)"/>
+
+<!-- LEYENDA -->
+<g class="c-purple"><rect x="40" y="1742" width="12" height="12" rx="2"/></g>
+<text class="ts" x="58" y="1752" dominant-baseline="central">Virtualización</text>
+<g class="c-teal"><rect x="180" y="1742" width="12" height="12" rx="2"/></g>
+<text class="ts" x="198" y="1752" dominant-baseline="central">Contenedores</text>
+<g class="c-amber"><rect x="320" y="1742" width="12" height="12" rx="2"/></g>
+<text class="ts" x="338" y="1752" dominant-baseline="central">Comparativa / Casos de uso</text>
+<g class="c-green"><rect x="490" y="1742" width="12" height="12" rx="2"/></g>
+<text class="ts" x="508" y="1752" dominant-baseline="central">Ventajas</text>
+<g class="c-red"><rect x="580" y="1742" width="12" height="12" rx="2"/></g>
+<text class="ts" x="598" y="1752" dominant-baseline="central">Desventajas</text>
+
+</svg>
+</div>
+</body>
+</html>

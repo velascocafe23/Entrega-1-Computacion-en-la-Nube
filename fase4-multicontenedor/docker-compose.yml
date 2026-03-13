@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: nginx:alpine
+    container_name: app-service
+    ports:
+      - "80:80"
+    volumes:
+      - ./app-content:/usr/share/nginx/html:ro
+    networks:
+      - app-network
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: db-service
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppassword
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: unless-stopped
+    expose:
+      - "5432"
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
