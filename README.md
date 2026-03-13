@@ -21,34 +21,34 @@
 │   └── README.md
 ├── fase2-aws-ec2/
 │   ├── evidencias/
+│   │   ├── Conectividad a Internet.png
+│   │   ├── Gateway y tabla de rutas.png
+│   │   ├── Interfaces_de_red.png.png
+│   │   ├── IP PUBLICA Y PRIVADA.png
 │   │   ├── IP_PUBLICA.png
-│   │   ├── IP_PUBLICA_Y_PRIVADA.png
-│   │   ├── Red_y_VPC.png
-│   │   ├── SecurityGroup.png
-│   │   ├── Interfaces_de_red_IP_privada_y_mascara.png
-│   │   ├── Gateway_y_tabla_de_rutas.png
-│   │   └── Conectividad_a_Internet.png
+│   │   ├── Red y VPC.png
+│   │   └── SecurityGroup.png
 │   └── README.md
 ├── fase3-docker/
 │   ├── evidencias/
-│   │   ├── Actualizar_paquetes.png
-│   │   ├── Iniciar_y_habilitar_el_servicio.png
-│   │   ├── Status_Docker.png
-│   │   └── Contendero_de_Prueba.png
+│   │   ├── Actualizar paquetes.png
+│   │   ├── Contendero de Prueba.png
+│   │   ├── Iniciar y habilitar el servicio.png
+│   │   └── Status Docker.png
 │   └── README.md
 ├── fase4-multicontenedor/
 │   ├── docker-compose.yml
 │   ├── evidencias/
-│   │   ├── Archivo_Partes.png
-│   │   ├── VerificacionArchivo.png
-│   │   └── Levantamiento.png
+│   │   ├── Archivo Partes.png
+│   │   ├── Levantamiento.png
+│   │   └── VerificacionArchivo.png
 │   └── README.md
 ├── fase5-operacion-distribuida/
 │   ├── evidencias/
-│   │   ├── IPContenedores.png
 │   │   ├── ComunicacionContenedores.png
-│   │   ├── Red_Docker.png
-│   │   └── Nginx_Welcome.png
+│   │   ├── IPContenedores.png
+│   │   ├── Nginx.png
+│   │   └── RedDocker.png
 │   └── README.md
 ├── fase6-analisis/
 │   └── README.md
@@ -159,12 +159,13 @@ Los contenedores logran portabilidad universal mediante tres mecanismos:
 
 | Evidencia | Archivo |
 |-----------|---------|
-| IP pública y privada | [`evidencias/IP_PUBLICA_Y_PRIVADA.png`](./evidencias/IP_PUBLICA_Y_PRIVADA.png) |
-| Red y VPC | [`evidencias/Red_y_VPC.png`](./evidencias/Red_y_VPC.png) |
-| Security Group (puertos 22 y 80) | [`evidencias/SecurityGroup.png`](./evidencias/SecurityGroup.png) |
-| Interfaces de red y máscara | [`evidencias/Interfaces_de_red_IP_privada_y_mascara.png`](./evidencias/Interfaces_de_red_IP_privada_y_mascara.png) |
-| Gateway y tabla de rutas | [`evidencias/Gateway_y_tabla_de_rutas.png`](./evidencias/Gateway_y_tabla_de_rutas.png) |
-| Conectividad a Internet | [`evidencias/Conectividad_a_Internet.png`](./evidencias/Conectividad_a_Internet.png) |
+| IP pública y privada | [IP PUBLICA Y PRIVADA.png](./fase2-aws-ec2/evidencias/IP%20PUBLICA%20Y%20PRIVADA.png) |
+| IP pública (curl) | [IP_PUBLICA.png](./fase2-aws-ec2/evidencias/IP_PUBLICA.png) |
+| Red y VPC | [Red y VPC.png](./fase2-aws-ec2/evidencias/Red%20y%20VPC.png) |
+| Security Group | [SecurityGroup.png](./fase2-aws-ec2/evidencias/SecurityGroup.png) |
+| Interfaces de red y máscara | [Interfaces_de_red.png](./fase2-aws-ec2/evidencias/Interfaces_de_red.png.png) |
+| Gateway y tabla de rutas | [Gateway y tabla de rutas.png](./fase2-aws-ec2/evidencias/Gateway%20y%20tabla%20de%20rutas.png) |
+| Conectividad a Internet | [Conectividad a Internet.png](./fase2-aws-ec2/evidencias/Conectividad%20a%20Internet.png) |
 
 📄 Ver detalle: [`fase2-aws-ec2/README.md`](./fase2-aws-ec2/README.md)
 
@@ -211,10 +212,10 @@ sudo docker run hello-world
 
 | Evidencia | Archivo |
 |-----------|---------|
-| Actualización de paquetes | [`evidencias/Actualizar_paquetes.png`](./evidencias/Actualizar_paquetes.png) |
-| Habilitar e iniciar servicio | [`evidencias/Iniciar_y_habilitar_el_servicio.png`](./evidencias/Iniciar_y_habilitar_el_servicio.png) |
-| Status Docker activo | [`evidencias/Status_Docker.png`](./evidencias/Status_Docker.png) |
-| Contenedor hello-world | [`evidencias/Contendero_de_Prueba.png`](./evidencias/Contendero_de_Prueba.png) |
+| Actualización de paquetes | [Actualizar paquetes.png](./fase3-docker/evidencias/Actualizar%20paquetes.png) |
+| Habilitar e iniciar servicio | [Iniciar y habilitar el servicio.png](./fase3-docker/evidencias/Iniciar%20y%20habilitar%20el%20servicio.png) |
+| Status Docker activo | [Status Docker.png](./fase3-docker/evidencias/Status%20Docker.png) |
+| Contenedor hello-world | [Contendero de Prueba.png](./fase3-docker/evidencias/Contendero%20de%20Prueba.png) |
 
 📄 Ver detalle: [`fase3-docker/README.md`](./fase3-docker/README.md)
 
@@ -274,9 +275,9 @@ sudo docker-compose up -d
 
 | Evidencia | Archivo |
 |-----------|---------|
-| Creación del archivo compose | [`evidencias/Archivo_Partes.png`](./evidencias/Archivo_Partes.png) |
-| Verificación del archivo | [`evidencias/VerificacionArchivo.png`](./evidencias/VerificacionArchivo.png) |
-| Levantamiento de contenedores | [`evidencias/Levantamiento.png`](./evidencias/Levantamiento.png) |
+| Creación del archivo compose | [Archivo Partes.png](./fase4-multicontenedor/evidencias/Archivo%20Partes.png) |
+| Verificación del archivo | [VerificacionArchivo.png](./fase4-multicontenedor/evidencias/VerificacionArchivo.png) |
+| Levantamiento de contenedores | [Levantamiento.png](./fase4-multicontenedor/evidencias/Levantamiento.png) |
 
 📄 Ver detalle: [`fase4-multicontenedor/README.md`](./fase4-multicontenedor/README.md)
 
@@ -318,10 +319,10 @@ Nginx accesible en: **http://54.226.183.158** → `Welcome to nginx!` ✅
 
 | Evidencia | Archivo |
 |-----------|---------|
-| IPs de contenedores (docker ps + inspect) | [`evidencias/IPContenedores.png`](./evidencias/IPContenedores.png) |
-| Comunicación inter-contenedor (ping) | [`evidencias/ComunicacionContenedores.png`](./evidencias/ComunicacionContenedores.png) |
-| Red Docker (network inspect) | [`evidencias/Red_Docker.png`](./evidencias/Red_Docker.png) |
-| Nginx accesible desde navegador | [`evidencias/Nginx_Welcome.png`](./evidencias/Nginx_Welcome.png) |
+| IPs de contenedores | [IPContenedores.png](./fase5-operacion-distribuida/evidencias/IPContenedores.png) |
+| Comunicación inter-contenedor | [ComunicacionContenedores.png](./fase5-operacion-distribuida/evidencias/ComunicacionContenedores.png) |
+| Red Docker (network inspect) | [RedDocker.png](./fase5-operacion-distribuida/evidencias/RedDocker.png) |
+| Nginx accesible desde navegador | [Nginx.png](./fase5-operacion-distribuida/evidencias/Nginx.png) |
 
 📄 Ver detalle: [`fase5-operacion-distribuida/README.md`](./fase5-operacion-distribuida/README.md)
 
